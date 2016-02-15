@@ -14,13 +14,17 @@ var {
 } = React;
 
 var Button = React.createClass({
+  getInitialState: function () {
+    return {
+      isLoading: false,
+      isDisabled: false,
+    }
+  },
   propTypes: Object.assign({},
     {
       textStyle: Text.propTypes.style,
       disabledStyle: Text.propTypes.style,
       children: PropTypes.string.isRequired,
-      isLoading: PropTypes.bool,
-      isDisabled: PropTypes.bool,
       activityIndicatorColor: PropTypes.string,
       onPress: PropTypes.func,
       onLongPress: PropTypes.func,
@@ -35,7 +39,7 @@ var Button = React.createClass({
   },
 
   _renderInnerTextAndroid: function () {
-    if (this.props.isLoading) {
+    if (this.state.isLoading) {
       return (
         <ProgressBarAndroid
           style={[{
@@ -54,7 +58,7 @@ var Button = React.createClass({
   },
 
   _renderInnerTextiOS: function () {
-    if (this.props.isLoading) {
+    if (this.state.isLoading) {
       return (
         <ActivityIndicatorIOS
           animating={true}
@@ -79,7 +83,7 @@ var Button = React.createClass({
   },
 
   render: function () {
-    if (this.props.isDisabled === true || this.props.isLoading === true) {
+    if (this.state.isDisabled === true || this.state.isLoading === true) {
       return (
         <View style={[styles.button, this.props.style, (this.props.disabledStyle || styles.opacity)]}>
           {this._renderInnerText()}
