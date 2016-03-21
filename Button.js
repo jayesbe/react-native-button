@@ -24,7 +24,7 @@ var Button = React.createClass({
     {
       textStyle: Text.propTypes.style,
       disabledStyle: Text.propTypes.style,
-      children: PropTypes.node.isRequired
+      children: PropTypes.node.isRequired,
       activityIndicatorColor: PropTypes.string,
       onPress: PropTypes.func,
       onLongPress: PropTypes.func,
